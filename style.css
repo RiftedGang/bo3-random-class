@@ -1,0 +1,92 @@
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #000 url('img/bg.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: #f0f0f0;
+}
+.wrapper {
+  max-width: 1000px;
+  margin: auto;
+  padding: 20px;
+  background: rgba(10,10,10,0.8);
+  border: 2px solid orange;
+}
+header {
+  text-align: center;
+}
+header h1 {
+  color: orange;
+  margin: 0;
+}
+header h2 {
+  color: #ccc;
+}
+.points {
+  background: orange;
+  color: black;
+  padding: 4px 12px;
+  display: inline-block;
+  font-weight: bold;
+}
+.class-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.weapons, .perks {
+  width: 48%;
+}
+.weapon-img {
+  width: 100%;
+  max-height: 120px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+.attachments {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+}
+.slot {
+  background: #222;
+  border: 1px solid #444;
+  text-align: center;
+  padding: 10px;
+}
+.empty {
+  background: #111;
+  color: #666;
+}
+.perk-block {
+  margin-bottom: 10px;
+}
+.perk-slot {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #222;
+  border: 1px solid #444;
+  padding: 8px;
+}
+.perk-slot img {
+  width: 32px;
+  height: 32px;
+}
+
+.generate-btn {
+  display: block;
+  margin: 30px auto 10px;
+  padding: 12px 24px;
+  font-size: 16px;
+  background: orange;
+  color: black;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.generate-btn:hover {
+  background: #ffa500;
+}
