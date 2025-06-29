@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>BO3 Random Class Generator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <h1>Call of Duty: Black Ops III</h1>
+      <h2>Random Class Generator</h2>
+      <div class="points">10/10</div>
+    </header>
+    <main class="class-container">
+      <section class="weapons">
+        <h3>Primary Argus</h3>
+        <img src="img/primary.png" class="weapon-img" alt="Primary Weapon">
+        <div class="attachments">
+          <div class="slot">ELO</div><div class="slot">Laser Sight</div><div class="slot">Long Barrel</div>
+          <div class="slot">Rapid Fire</div><div class="slot empty"></div><div class="slot empty"></div>
+        </div>
+        <h3>Secondary Iron Jim</h3>
+        <img src="img/secondary.png" class="weapon-img" alt="Secondary Weapon">
+        <div class="attachments">
+          <div class="slot empty"></div><div class="slot empty"></div><div class="slot empty"></div>
+        </div>
+      </section>
+      <section class="perks">
+        <div class="perk-block">
+          <h4>Perk 1</h4>
+          <div class="perk-slot empty">none</div>
+        </div>
+        <div class="perk-block">
+          <h4>Perk 2</h4>
+          <div class="perk-slot"><img src="img/perk2.png"><span>Ante Up</span></div>
+        </div>
+        <div class="perk-block">
+          <h4>Perk 3</h4>
+          <div class="perk-slot"><img src="img/perk3.png"><span>Tactical Mask</span></div>
+        </div>
+        <div class="perk-block">
+          <h4>Lethal</h4>
+          <div class="perk-slot"><img src="img/lethal.png"><span>Trip Mine</span></div>
+        </div>
+        <div class="perk-block">
+          <h4>Tacticals</h4>
+          <div class="perk-slot empty">none</div>
+        </div>
+        <div class="perk-block">
+          <h4>Wildcards</h4>
+          <div class="perk-slot"><img src="img/wildcard.png"><span>Primary Gunfighter 3</span></div>
+        </div>
+        <div class="perk-block">
+          <h4>Specialist</h4>
+          <div class="perk-slot empty">Heat Wave</div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <button onclick="generateClass()" class="generate-btn">Neue Klasse generieren</button>
+  <script src="script.js"></script>
+</body>
+
+</html>
