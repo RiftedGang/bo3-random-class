@@ -1,0 +1,45 @@
+
+body {
+  background-color: #1a1a1a;
+  color: #fff;
+  font-family: "Segoe UI", sans-serif;
+  padding: 20px;
+}
+
+.title-block {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.title-block h1 {
+  font-size: 2.5rem;
+  color: #fff;
+}
+
+.title-block h2 {
+  font-size: 1.2rem;
+  color: #ffa500;
+  font-weight: 400;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+#output > div {
+  margin-bottom: 15px;
+}
+
+button {
+  background-color: #333;
+  color: white;
+  padding: 10px 16px;
+  border: 1px solid #666;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #555;
+}
