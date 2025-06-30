@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Rifted - BO3 Random Class Generator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="title-block">
+    <h1>Rifted</h1>
+    <h2>Black OPS 3 Random Class Gen.</h2>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Primärwaffe</div>
+    <div class="grid">
+      <div class="slot" id="primary-weapon"></div>
+      <div class="slot" id="primary-sight"></div>
+      <div class="slot" id="primary-attachment1"></div>
+      <div class="slot" id="primary-attachment2"></div>
+      <div class="slot" id="primary-attachment3"></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Sekundärwaffe</div>
+    <div class="grid">
+      <div class="slot" id="secondary-weapon"></div>
+      <div class="slot" id="secondary-sight"></div>
+      <div class="slot" id="secondary-attachment1"></div>
+      <div class="slot" id="secondary-attachment2"></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Perks</div>
+    <div class="grid">
+      <div class="slot" id="perk1"></div>
+      <div class="slot" id="perk1b"></div>
+      <div class="slot" id="perk2"></div>
+      <div class="slot" id="perk2b"></div>
+      <div class="slot" id="perk3"></div>
+      <div class="slot" id="perk3b"></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Ausrüstung</div>
+    <div class="grid">
+      <div class="slot" id="lethal1"></div>
+      <div class="slot" id="lethal2"></div>
+      <div class="slot" id="tactical1"></div>
+      <div class="slot" id="tactical2"></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Wildcards</div>
+    <div class="grid">
+      <div class="slot" id="wildcard1"></div>
+      <div class="slot" id="wildcard2"></div>
+      <div class="slot" id="wildcard3"></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Specialist</div>
+    <div class="grid">
+      <div class="slot" id="specialist"></div>
+    </div>
+  </div>
+
+  <div class="footer" id="point-counter">Auswahlpunkte: 0 / 10</div>
+  <button class="random-button" onclick="generateRandomClass()">🎲 Zufällige Klasse generieren</button>
+
+  <script src="bo3_random_class.js"></script>
+</body>
+</html>
