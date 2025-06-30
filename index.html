@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Rifted - BO3 Random Class Generator</title>
+  <style>
+    body {
+      background-color: #1a1a1a;
+      color: #fff;
+      font-family: "Segoe UI", Helvetica, sans-serif;
+      padding: 20px;
+    }
+    .title-block { text-align: center; margin-bottom: 40px; }
+    .title-block h1 { font-size: 3rem; color: #ffffff; margin: 0; font-weight: 700; letter-spacing: 2px; }
+    .title-block h2 { font-size: 1rem; color: #ffa500; font-weight: 400; text-transform: uppercase; margin-top: 8px; letter-spacing: 1px; }
+    .section { margin-bottom: 30px; }
+    .section-title { font-size: 1.2rem; color: #ffcc00; margin-bottom: 10px; border-bottom: 1px solid #444; padding-bottom: 5px; }
+    .grid-vertical { display: flex; flex-direction: column; gap: 10px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 15px; }
+    .slot { background-color: #2a2a2a; border: 2px dashed #555; border-radius: 8px; height: 110px; display: flex; align-items: center; justify-content: center; flex-direction: column; padding: 8px; position: relative; }
+    .slot-label { font-size: 0.8rem; color: #aaa; margin-top: 6px; }
+    .slot-desc { font-size: 0.7rem; color: #66f; margin-top: 4px; font-style: italic; text-align: center; line-height: 1.2; }
+    .footer { text-align: center; margin-top: 30px; font-size: 1.2rem; color: #ffa500; }
+    .random-button { display: block; margin: 20px auto 0; padding: 10px 20px; font-size: 1rem; background-color: #444; color: #fff; border: 1px solid #666; border-radius: 6px; cursor: pointer; }
+    .random-button:hover { background-color: #666; }
+    .specialist { font-weight: bold; font-size: 1.1rem; text-align: center; margin-bottom: 6px; }
+  </style>
+</head>
+<body>
+  <div class="title-block">
+    <h1>Rifted</h1>
+    <h2>Black OPS 3 Random Class Gen.</h2>
+  </div>
+
+  <div class="section"><div class="section-title">Primärwaffe</div>
+    <div class="grid">
+      <div class="slot"><div>+</div><div class="slot-label">Waffe</div><div class="slot-desc" data-type="primary"></div></div>
+      <div class="slot"><div>+</div><div class="slot-label">Visier</div><div class="slot-desc" data-type="sight1"></div></div>
+      <div class="slot"><div>+</div><div class="slot-label">Aufsatz 1</div><div class="slot-desc" data-type="attachment1"></div></div>
+      <div class="slot"><div>+</div><div class="slot-label">Aufsatz 2</div><div class="slot-desc" data-type="attachment2"></div></div>
+    </div>
+  </div>
+
+  <div class="section"><div class="section-title">Sekundärwaffe</div>
+    <div class="grid">
+      <div class="slot"><div>+</div><div class="slot-label">Waffe</div><div class="slot-desc" data-type="secondary"></div></div>
+      <div class="slot"><div>+</div><div class="slot-label">Aufsatz</div><div class="slot-desc" data-type="sec-attachment"></div></div>
+    </div>
+  </div>
+
+  <div class="section"><div class="section-title">Perks</div>
+    <div class="grid">
+      <div class="slot"><div>+</div><div class="slot-label">Perk 1</div><div class="slot-desc" data-type="perk1"></div></div>
+      <div class="slot"><div>+</div><div class="slot-label">Perk 2</div><div class="slot-desc" data-type="perk2"></div></div>
+      <div class="slot"><div>+</div><div class="slot-label">Perk 3</div><div class="slot-desc" data-type="perk3"></div></div>
+    </div>
+  </div>
+
+  <div class="section"><div class="section-title">Ausrüstung</div>
+    <div class="grid">
+      <div class="slot"><div>+</div><div class="slot-label">Tödlich</div><div class="slot-desc" data-type="lethal"></div></div>
+      <div class="slot"><div>+</div><div class="slot-label">Taktisch</div><div class="slot-desc" data-type="tactical"></div></div>
+    </div>
+  </div>
+
+  <div class="section"><div class="section-title">Wildcard</div>
+    <div class="grid">
+      <div class="slot"><div>+</div><div class="slot-label">Wildcard</div><div class="slot-desc" data-type="wildcard"></div></div>
+    </div>
+  </div>
+
+  <div class="section"><div class="section-title">Specialist</div>
+    <div class="grid">
+      <div class="slot"><div class="specialist" data-type="specialist">[ Specialist ]</div><div class="slot-desc">z. B. Prophet – Glitch</div></div>
+    </div>
+  </div>
+
+  <div class="footer" id="point-counter">Auswahlpunkte: 0 / 10</div>
+  <button class="random-button" onclick="generateClass()">🎲 Zufällige Klasse generieren</button>
+
+<script>
+const data = {
+  primary: ["KN-44", "ICR-1", "Man-O-War", "HVK-30", "M8A7"],
+  secondary: ["RK5", "MR6", "L-CAR 9"],
+  sights: ["Reflex", "ELO", "BOA 3"],
+  attachments: ["Schnellziehen", "Schaft", "Hochkaliber", "Griff", "Magazinerweiterung"],
+  perks1: ["Geist", "Flinke Hände", "Nachbrenner"],
+  perks2: ["Aufgespürt", "Techniker", "Fest verdrahtet"],
+  perks3: ["Totenstille", "Kaltblütig", "Taktikmaske"],
+  lethals: ["Granate", "Semtex", "Sprengladung"],
+  tacticals: ["EMP", "Blendgranate", "Schockladung"],
+  wildcards: ["Primärschütze 1", "Perk 1 Greifer", "Gefechtsbonus"],
+  specialists: ["Prophet – Glitch", "Battery – War Machine", "Seraph – Annihilator"]
+};
+
+function pickRandom(array) {
+  return array[Math.floor(Math.random() * array.length)];
+}
+
+function generateClass() {
+  document.querySelector('[data-type="primary"]').textContent = pickRandom(data.primary);
+  document.querySelector('[data-type="secondary"]').textContent = pickRandom(data.secondary);
+  document.querySelector('[data-type="sight1"]').textContent = pickRandom(data.sights);
+  document.querySelector('[data-type="attachment1"]').textContent = pickRandom(data.attachments);
+  document.querySelector('[data-type="attachment2"]').textContent = pickRandom(data.attachments);
+  document.querySelector('[data-type="sec-attachment"]').textContent = pickRandom(data.attachments);
+  document.querySelector('[data-type="perk1"]').textContent = pickRandom(data.perks1);
+  document.querySelector('[data-type="perk2"]').textContent = pickRandom(data.perks2);
+  document.querySelector('[data-type="perk3"]').textContent = pickRandom(data.perks3);
+  document.querySelector('[data-type="lethal"]').textContent = pickRandom(data.lethals);
+  document.querySelector('[data-type="tactical"]').textContent = pickRandom(data.tacticals);
+  document.querySelector('[data-type="wildcard"]').textContent = pickRandom(data.wildcards);
+  document.querySelector('[data-type="specialist"]').textContent = pickRandom(data.specialists);
+
+  document.getElementById("point-counter").textContent = "Auswahlpunkte: 10 / 10";
+}
+</script>
+</body>
+</html>
