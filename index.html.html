@@ -1,0 +1,1146 @@
+
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<title>Rifted - BO3 Random Class Generator</title>
+<style>
+    body {
+      background-color: #1a1a1a;
+      color: #fff;
+      font-family: "Segoe UI", Helvetica, sans-serif;
+      padding: 20px;
+    }
+
+    .title-block {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .title-block h1 {
+      font-size: 3rem;
+      color: #ffffff;
+      margin: 0;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+
+    .title-block h2 {
+      font-size: 1rem;
+      color: #ffa500;
+      font-weight: 400;
+      text-transform: uppercase;
+      margin-top: 8px;
+      letter-spacing: 1px;
+    }
+
+    .section {
+      margin-bottom: 30px;
+    }
+
+    .section-title {
+      font-size: 1.2rem;
+      color: #ffcc00;
+      margin-bottom: 10px;
+      border-bottom: 1px solid #444;
+      padding-bottom: 5px;
+    }
+
+    .grid-vertical {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 15px;
+    }
+
+    .slot {
+      background-color: #2a2a2a;
+      border: 2px dashed #555;
+      border-radius: 8px;
+      height: 110px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 8px;
+      position: relative;
+    }
+
+    .slot-label {
+      font-size: 0.8rem;
+      color: #aaa;
+      margin-top: 6px;
+    }
+
+    .slot-desc {
+      font-size: 0.7rem;
+      color: #666;
+      margin-top: 4px;
+      font-style: italic;
+      text-align: center;
+      line-height: 1.2;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 1.2rem;
+      color: #ffa500;
+    }
+
+    .random-button {
+      display: block;
+      margin: 20px auto 0;
+      padding: 10px 20px;
+      font-size: 1rem;
+      background-color: #444;
+      color: #fff;
+      border: 1px solid #666;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .random-button:hover {
+      background-color: #666;
+    }
+
+    .specialist {
+      font-weight: bold;
+      font-size: 1.1rem;
+      text-align: center;
+      margin-bottom: 6px;
+    }
+  </style>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const placeholders = [
+        "z. B. M8A7", "z. B. ICR-1", "z. B. Totenstille", "z. B. EMP-Granate", "z. B. Flinkheit",
+        "z. B. Reflexvisier", "z. B. Schnellziehen", "z. B. Ghost", "z. B. KN-44"
+      ];
+
+      const descs = document.querySelectorAll('.slot-desc');
+      descs.forEach(desc => {
+        const rand = placeholders[Math.floor(Math.random() * placeholders.length)];
+        desc.textContent = rand;
+      });
+    });
+  </script>
+<style>/* Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+ 
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #0a0a0a;
+    color: #ffffff;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+ 
+/* Container */
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+ 
+/* Header Styles */
+.header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 20px;
+    background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+    border-radius: 10px;
+    border: 1px solid #333;
+}
+ 
+.title {
+    margin-bottom: 20px;
+}
+ 
+.title-main {
+    display: block;
+    font-size: 3rem;
+    font-weight: bold;
+    color: #ff6b00;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    letter-spacing: 2px;
+}
+ 
+.title-sub {
+    display: block;
+    font-size: 1.2rem;
+    color: #cccccc;
+    margin-top: 10px;
+}
+ 
+/* Header Controls */
+.header-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+ 
+/* Toggle Switch */
+.toggle-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+}
+ 
+.toggle-label input {
+    display: none;
+}
+ 
+.toggle-slider {
+    width: 50px;
+    height: 26px;
+    background-color: #333;
+    border-radius: 34px;
+    position: relative;
+    transition: background-color 0.3s;
+    margin-right: 10px;
+}
+ 
+.toggle-slider::before {
+    content: '';
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.3s;
+}
+ 
+.toggle-label input:checked + .toggle-slider {
+    background-color: #ff6b00;
+}
+ 
+.toggle-label input:checked + .toggle-slider::before {
+    transform: translateX(24px);
+}
+ 
+.toggle-text {
+    font-size: 1rem;
+    color: #cccccc;
+}
+ 
+/* Filter Select */
+.filter-select {
+    padding: 10px 20px;
+    background-color: #1a1a1a;
+    color: #ffffff;
+    border: 2px solid #333;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+ 
+.filter-select:hover {
+    border-color: #ff6b00;
+}
+ 
+.filter-select:focus {
+    outline: none;
+    border-color: #ff6b00;
+    box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.2);
+}
+ 
+/* Main Content */
+.main-content {
+    flex: 1;
+    display: grid;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+ 
+/* Card Styles */
+.card {
+    background: linear-gradient(135deg, #1a1a1a 0%, #141414 100%);
+    border: 1px solid #333;
+    border-radius: 10px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+ 
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(255, 107, 0, 0.2);
+    border-color: #ff6b00;
+}
+ 
+.card-title {
+    font-size: 1.2rem;
+    color: #ff6b00;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+ 
+.card-content {
+    color: #cccccc;
+}
+ 
+/* Specialist Card */
+.specialist-card {
+    grid-column: 1 / -1;
+}
+ 
+.specialist-info h3 {
+    color: #ffffff;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+ 
+.specialist-info p {
+    margin: 5px 0;
+    color: #cccccc;
+}
+ 
+/* Weapons Section */
+.weapons-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    grid-column: 1 / -1;
+}
+ 
+.weapon-name {
+    color: #ffffff;
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+}
+ 
+.weapon-type {
+    color: #ff6b00;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+ 
+.attachments-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+ 
+.attachment-item {
+    background-color: #ff6b00;
+    color: #000000;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+ 
+.no-attachments {
+    color: #666;
+    font-style: italic;
+}
+ 
+/* Perks Section */
+.perks-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    grid-column: 1 / -1;
+}
+ 
+.perk-content {
+    min-height: 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+ 
+.perk-slot {
+    background-color: rgba(255, 107, 0, 0.1);
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ff6b00;
+    text-align: center;
+    font-weight: bold;
+}
+ 
+/* Equipment Section */
+.equipment-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    grid-column: 1 / -1;
+}
+ 
+.equipment-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+ 
+.equipment-item h4 {
+    color: #ff6b00;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+}
+ 
+.equipment-slot {
+    background-color: rgba(255, 107, 0, 0.1);
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ff6b00;
+    text-align: center;
+    font-weight: bold;
+}
+ 
+/* Wildcards */
+.wildcards-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+ 
+.wildcard-item {
+    background-color: #ffaa00;
+    color: #000000;
+    padding: 8px 16px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+ 
+.no-wildcards {
+    color: #666;
+    font-style: italic;
+}
+ 
+/* Footer */
+.footer {
+    background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+    border: 1px solid #333;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+ 
+/* Points Display */
+.points-display {
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+ 
+.points-label {
+    color: #cccccc;
+}
+ 
+.points-value {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ff6b00;
+    transition: all 0.3s ease;
+}
+ 
+.points-max {
+    color: #666;
+}
+ 
+/* Generate Button */
+.generate-button {
+    background: linear-gradient(135deg, #ff6b00 0%, #ff8c00 100%);
+    color: #000000;
+    border: none;
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 107, 0, 0.3);
+}
+ 
+.generate-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 107, 0, 0.5);
+    animation: pulse 1s infinite;
+}
+ 
+.generate-button:active {
+    transform: translateY(0);
+}
+ 
+/* Animations */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 6px 20px rgba(255, 107, 0, 0.5);
+    }
+    50% {
+        box-shadow: 0 6px 30px rgba(255, 107, 0, 0.8);
+    }
+    100% {
+        box-shadow: 0 6px 20px rgba(255, 107, 0, 0.5);
+    }
+}
+ 
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.3s ease forwards;
+}
+ 
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+ 
+.fade-out {
+    animation: fadeOut 0.2s ease forwards;
+}
+ 
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+}
+ 
+/* Responsive Design */
+@media (max-width: 1023px) {
+    .title-main {
+        font-size: 2.5rem;
+    }
+ 
+    .weapons-section,
+    .perks-section {
+        grid-template-columns: 1fr 1fr;
+    }
+ 
+    .equipment-section {
+        grid-template-columns: 1fr;
+    }
+}
+ 
+@media (max-width: 767px) {
+    .container {
+        padding: 10px;
+    }
+ 
+    .title-main {
+        font-size: 2rem;
+    }
+ 
+    .title-sub {
+        font-size: 1rem;
+    }
+ 
+    .header-controls {
+        flex-direction: column;
+        gap: 15px;
+    }
+ 
+    .weapons-section,
+    .perks-section {
+        grid-template-columns: 1fr;
+    }
+ 
+    .equipment-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+ 
+    .footer {
+        flex-direction: column;
+        text-align: center;
+    }
+ 
+    .generate-button {
+        width: 100%;
+        justify-content: center;
+        padding: 15px 30px;
+    }
+ 
+    .card {
+        padding: 15px;
+    }
+ 
+    .card-title {
+        font-size: 1.1rem;
+    }
+}</style></head>
+<body>
+<div class="title-block">
+<h1>Rifted</h1>
+<h2>Black OPS 3 Random Class Gen.</h2>
+</div>
+<div class="footer">Auswahlpunkte: 0 / 10</div>
+<button class="random-button">🎲 Zufällige Klasse generieren</button>
+<script>// Black Ops 3 Loadout Data
+const loadoutData = {
+    specialists: [
+        { name: "Ruin", ability: "Overdrive", weapon: "Gravity Spikes" },
+        { name: "Prophet", ability: "Glitch", weapon: "Tempest" },
+        { name: "Battery", ability: "Kinetic Armor", weapon: "War Machine" },
+        { name: "Seraph", ability: "Combat Focus", weapon: "Annihilator" },
+        { name: "Outrider", ability: "Vision Pulse", weapon: "Sparrow" },
+        { name: "Reaper", ability: "Psychosis", weapon: "Scythe" },
+        { name: "Spectre", ability: "Active Camo", weapon: "Ripper" },
+        { name: "Nomad", ability: "Rejack", weapon: "H.I.V.E." },
+        { name: "Firebreak", ability: "Heat Wave", weapon: "Purifier" },
+        { name: "Blackjack", ability: "Rogue", weapon: "Gambler" }
+    ],
+ 
+    primaryWeapons: {
+        assault: [
+            { name: "KN-44", dlc: false },
+            { name: "XR-2", dlc: false },
+            { name: "HVK-30", dlc: false },
+            { name: "ICR-1", dlc: false },
+            { name: "Man-O-War", dlc: false },
+            { name: "Sheiva", dlc: false },
+            { name: "M8A7", dlc: false },
+            { name: "FFAR", dlc: true },
+            { name: "Peacekeeper MK2", dlc: true },
+            { name: "M16", dlc: true },
+            { name: "Galil", dlc: true },
+            { name: "KVK 99m", dlc: true },
+            { name: "LV8 Basilisk", dlc: true },
+            { name: "MX Garand", dlc: true }
+        ],
+        smg: [
+            { name: "Kuda", dlc: false },
+            { name: "VMP", dlc: false },
+            { name: "Weevil", dlc: false },
+            { name: "Vesper", dlc: false },
+            { name: "Pharo", dlc: false },
+            { name: "Razorback", dlc: false },
+            { name: "HG 40", dlc: true },
+            { name: "DIY 11 Renovator", dlc: true },
+            { name: "Bootlegger", dlc: true },
+            { name: "AK-74u", dlc: true },
+            { name: "M1927", dlc: true },
+            { name: "PPSh-41", dlc: true },
+            { name: "XMC", dlc: true },
+            { name: "Sten", dlc: true }
+        ],
+        lmg: [
+            { name: "BRM", dlc: false },
+            { name: "Dingo", dlc: false },
+            { name: "Gorgon", dlc: false },
+            { name: "48 Dredge", dlc: false },
+            { name: "R70 Ajax", dlc: true },
+            { name: "RPK", dlc: true },
+            { name: "Olympia", dlc: true }
+        ],
+        sniper: [
+            { name: "Drakon", dlc: false },
+            { name: "Locus", dlc: false },
+            { name: "P-06", dlc: false },
+            { name: "SVG-100", dlc: false },
+            { name: "RSA Interdiction", dlc: true },
+            { name: "DBSR-50", dlc: true },
+            { name: "XPR-50", dlc: true },
+            { name: "M14", dlc: true }
+        ],
+        shotgun: [
+            { name: "KRM-262", dlc: false },
+            { name: "205 Brecci", dlc: false },
+            { name: "Haymaker 12", dlc: false },
+            { name: "Argus", dlc: false },
+            { name: "Banshii", dlc: true },
+            { name: "Olympia", dlc: true }
+        ]
+    },
+ 
+    secondaryWeapons: {
+        pistol: [
+            { name: "MR6", dlc: false },
+            { name: "RK5", dlc: false },
+            { name: "L-CAR 9", dlc: false },
+            { name: "Marshal 16", dlc: true },
+            { name: "Rift E9", dlc: true },
+            { name: "1911", dlc: true }
+        ],
+        launcher: [
+            { name: "XM-53", dlc: false },
+            { name: "BlackCell", dlc: false },
+            { name: "L4 Siege", dlc: true },
+            { name: "Max-GL", dlc: true }
+        ],
+        melee: [
+            { name: "Combat Knife", dlc: false },
+            { name: "Brass Knuckles", dlc: true },
+            { name: "Wrench", dlc: true },
+            { name: "Butterfly Knife", dlc: true },
+            { name: "Iron Jim", dlc: true },
+            { name: "Fury's Song", dlc: true },
+            { name: "Malice", dlc: true },
+            { name: "Skull Splitter", dlc: true },
+            { name: "Slash N' Burn", dlc: true },
+            { name: "Nightbreaker", dlc: true },
+            { name: "Buzz Cut", dlc: true },
+            { name: "Nunchucks", dlc: true },
+            { name: "Prizefighters", dlc: true },
+            { name: "Enforcer", dlc: true },
+            { name: "Bushwhacker", dlc: true }
+        ]
+    },
+ 
+    attachments: {
+        optics: ["Reflex", "ELO", "Recon", "Varix 3", "BOA 3", "Thermal"],
+        other: ["Quickdraw", "Stock", "Laser Sight", "Grip", "High Caliber", "FMJ", 
+                "Long Barrel", "Suppressor", "Extended Mags", "Rapid Fire", "Fast Mags", "Ballistics CPU"]
+    },
+ 
+    perks: {
+        perk1: ["Afterburner", "Blind Eye", "Flak Jacket", "Ghost", "Overclock", "Sixth Sense"],
+        perk2: ["Ante Up", "Fast Hands", "Hard Wired", "Scavenger", "Tracker", "Cold Blooded"],
+        perk3: ["Awareness", "Blast Suppressor", "Dead Silence", "Engineer", "Gung-Ho", "Tactical Mask"]
+    },
+ 
+    equipment: {
+        lethal: ["Frag", "Semtex", "C4", "Trip Mine", "Combat Axe", "Thermite"],
+        tactical: ["Concussion", "Flashbang", "Smoke", "Trophy System", "EMP", "Shock Charge", "Black Hat"]
+    },
+ 
+    wildcards: [
+        { name: "Primary Gunfighter 1", slots: ["primary_attachment"] },
+        { name: "Primary Gunfighter 2", slots: ["primary_attachment"] },
+        { name: "Primary Gunfighter 3", slots: ["primary_attachment"] },
+        { name: "Secondary Gunfighter 1", slots: ["secondary_attachment"] },
+        { name: "Secondary Gunfighter 2", slots: ["secondary_attachment"] },
+        { name: "Overkill", slots: ["primary"] },
+        { name: "Perk 1 Greed", slots: ["perk1"] },
+        { name: "Perk 2 Greed", slots: ["perk2"] },
+        { name: "Perk 3 Greed", slots: ["perk3"] },
+        { name: "Danger Close", slots: ["lethal", "tactical"] }
+    ]
+};
+ 
+// Global variables
+let currentLoadout = {
+    specialist: null,
+    primary: null,
+    primaryAttachments: [],
+    secondary: null,
+    secondaryAttachments: [],
+    perk1: [],
+    perk2: [],
+    perk3: [],
+    lethal: null,
+    tactical: null,
+    wildcards: [],
+    points: 0
+};
+ 
+// Utility functions
+function getRandomElement(array) {
+    return array[Math.floor(Math.random() * array.length)];
+}
+ 
+function shuffleArray(array) {
+    const newArray = [...array];
+    for (let i = newArray.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+    }
+    return newArray;
+}
+ 
+function getFilteredPrimaryWeapons() {
+    const filter = document.getElementById('weaponFilter').value;
+    const includeDLC = document.getElementById('dlcToggle').checked;
+ 
+    let weapons = [];
+ 
+    if (filter === 'all') {
+        Object.values(loadoutData.primaryWeapons).forEach(category => {
+            weapons = weapons.concat(category);
+        });
+    } else {
+        weapons = loadoutData.primaryWeapons[filter] || [];
+    }
+ 
+    if (!includeDLC) {
+        weapons = weapons.filter(w => !w.dlc);
+    }
+ 
+    return weapons;
+}
+ 
+function getWeaponType(weaponName) {
+    for (const [type, weapons] of Object.entries(loadoutData.primaryWeapons)) {
+        if (weapons.some(w => w.name === weaponName)) {
+            const typeNames = {
+                assault: "Sturmgewehr",
+                smg: "Maschinenpistole",
+                lmg: "LMG",
+                sniper: "Scharfschützengewehr",
+                shotgun: "Schrotflinte"
+            };
+            return typeNames[type] || type;
+        }
+    }
+    return "Unbekannt";
+}
+ 
+function calculatePoints(loadout) {
+    let points = 0;
+ 
+    // Primary weapon + attachments
+    if (loadout.primary) {
+        points += 1;
+        points += loadout.primaryAttachments.length;
+    }
+ 
+    // Secondary weapon + attachments  
+    if (loadout.secondary) {
+        points += 1;
+        points += loadout.secondaryAttachments.length;
+    }
+ 
+    // Perks
+    points += loadout.perk1.length;
+    points += loadout.perk2.length;
+    points += loadout.perk3.length;
+ 
+    // Equipment
+    if (loadout.lethal) points += 1;
+    if (loadout.tactical) points += 1;
+ 
+    return points;
+}
+ 
+function generateRandomLoadout() {
+    const newLoadout = {
+        specialist: null,
+        primary: null,
+        primaryAttachments: [],
+        secondary: null,
+        secondaryAttachments: [],
+        perk1: [],
+        perk2: [],
+        perk3: [],
+        lethal: null,
+        tactical: null,
+        wildcards: [],
+        points: 0
+    };
+ 
+    const includeDLC = document.getElementById('dlcToggle').checked;
+    let availablePoints = 10;
+    const usedWildcards = [];
+ 
+    // Always select specialist (doesn't cost points)
+    newLoadout.specialist = getRandomElement(loadoutData.specialists);
+ 
+    // Decide on wildcards first (10-20% chance for each)
+    const possibleWildcards = shuffleArray(loadoutData.wildcards);
+    for (const wildcard of possibleWildcards) {
+        if (Math.random() < 0.15 && availablePoints > 0) {
+            usedWildcards.push(wildcard);
+            newLoadout.wildcards.push(wildcard.name);
+            availablePoints--;
+        }
+    }
+ 
+    // Primary weapon (90% chance)
+    if (Math.random() < 0.9 && availablePoints > 0) {
+        const primaryWeapons = getFilteredPrimaryWeapons();
+        if (primaryWeapons.length > 0) {
+            newLoadout.primary = getRandomElement(primaryWeapons).name;
+            availablePoints--;
+ 
+            // Primary attachments
+            let maxPrimaryAttachments = 2;
+            if (usedWildcards.some(w => w.name === "Primary Gunfighter 1")) maxPrimaryAttachments++;
+            if (usedWildcards.some(w => w.name === "Primary Gunfighter 2")) maxPrimaryAttachments++;
+            if (usedWildcards.some(w => w.name === "Primary Gunfighter 3")) maxPrimaryAttachments++;
+ 
+            const attachmentCount = Math.min(
+                Math.floor(Math.random() * (maxPrimaryAttachments + 1)),
+                availablePoints
+            );
+ 
+            const allAttachments = [...loadoutData.attachments.optics, ...loadoutData.attachments.other];
+            const selectedAttachments = shuffleArray(allAttachments).slice(0, attachmentCount);
+            newLoadout.primaryAttachments = selectedAttachments;
+            availablePoints -= attachmentCount;
+        }
+    }
+ 
+    // Secondary weapon (60% chance, or if Overkill)
+    const hasOverkill = usedWildcards.some(w => w.name === "Overkill");
+    if ((Math.random() < 0.6 || hasOverkill) && availablePoints > 0) {
+        let secondaryWeapons = [];
+ 
+        if (hasOverkill) {
+            // Can use another primary weapon
+            secondaryWeapons = getFilteredPrimaryWeapons();
+        } else {
+            // Normal secondary weapons
+            Object.values(loadoutData.secondaryWeapons).forEach(category => {
+                secondaryWeapons = secondaryWeapons.concat(
+                    category.filter(w => includeDLC || !w.dlc)
+                );
+            });
+        }
+ 
+        if (secondaryWeapons.length > 0) {
+            newLoadout.secondary = getRandomElement(secondaryWeapons).name;
+            availablePoints--;
+ 
+            // Secondary attachments (only for guns, not melee/launcher)
+            const isGun = !loadoutData.secondaryWeapons.melee.some(w => w.name === newLoadout.secondary) &&
+                         !loadoutData.secondaryWeapons.launcher.some(w => w.name === newLoadout.secondary);
+ 
+            if (isGun || hasOverkill) {
+                let maxSecondaryAttachments = hasOverkill ? 2 : 1;
+                if (usedWildcards.some(w => w.name === "Secondary Gunfighter 1")) maxSecondaryAttachments++;
+                if (usedWildcards.some(w => w.name === "Secondary Gunfighter 2")) maxSecondaryAttachments++;
+ 
+                const attachmentCount = Math.min(
+                    Math.floor(Math.random() * (maxSecondaryAttachments + 1)),
+                    availablePoints
+                );
+ 
+                const allAttachments = [...loadoutData.attachments.optics, ...loadoutData.attachments.other];
+                const selectedAttachments = shuffleArray(allAttachments).slice(0, attachmentCount);
+                newLoadout.secondaryAttachments = selectedAttachments;
+                availablePoints -= attachmentCount;
+            }
+        }
+    }
+ 
+    // Perks
+    // Perk 1
+    const maxPerk1 = usedWildcards.some(w => w.name === "Perk 1 Greed") ? 2 : 1;
+    const perk1Count = Math.min(Math.ceil(Math.random() * maxPerk1), availablePoints);
+    newLoadout.perk1 = shuffleArray(loadoutData.perks.perk1).slice(0, perk1Count);
+    availablePoints -= perk1Count;
+ 
+    // Perk 2
+    if (availablePoints > 0) {
+        const maxPerk2 = usedWildcards.some(w => w.name === "Perk 2 Greed") ? 2 : 1;
+        const perk2Count = Math.min(Math.ceil(Math.random() * maxPerk2), availablePoints);
+        newLoadout.perk2 = shuffleArray(loadoutData.perks.perk2).slice(0, perk2Count);
+        availablePoints -= perk2Count;
+    }
+ 
+    // Perk 3
+    if (availablePoints > 0) {
+        const maxPerk3 = usedWildcards.some(w => w.name === "Perk 3 Greed") ? 2 : 1;
+        const perk3Count = Math.min(Math.ceil(Math.random() * maxPerk3), availablePoints);
+        newLoadout.perk3 = shuffleArray(loadoutData.perks.perk3).slice(0, perk3Count);
+        availablePoints -= perk3Count;
+    }
+ 
+    // Equipment
+    const hasDangerClose = usedWildcards.some(w => w.name === "Danger Close");
+ 
+    // Lethal (70% chance or if Danger Close)
+    if ((Math.random() < 0.7 || hasDangerClose) && availablePoints > 0) {
+        newLoadout.lethal = getRandomElement(loadoutData.equipment.lethal);
+        availablePoints--;
+    }
+ 
+    // Tactical (70% chance or if Danger Close)
+    if ((Math.random() < 0.7 || hasDangerClose) && availablePoints > 0) {
+        newLoadout.tactical = getRandomElement(loadoutData.equipment.tactical);
+        availablePoints--;
+    }
+ 
+    // Calculate final points
+    newLoadout.points = calculatePoints(newLoadout);
+ 
+    return newLoadout;
+}
+ 
+function updateUI(loadout) {
+    // Fade out all cards
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+        card.classList.add('fade-out');
+    });
+ 
+    setTimeout(() => {
+        // Update Specialist
+        const specialistContent = document.getElementById('specialistContent');
+        specialistContent.innerHTML = `
+            <div class="specialist-info">
+                <h3 class="specialist-name">${loadout.specialist.name}</h3>
+                <p class="specialist-ability">Ability: ${loadout.specialist.ability}</p>
+                <p class="specialist-weapon">Weapon: ${loadout.specialist.weapon}</p>
+            </div>
+        `;
+ 
+        // Update Primary Weapon
+        const primaryContent = document.getElementById('primaryContent');
+        if (loadout.primary) {
+            primaryContent.innerHTML = `
+                <h3 class="weapon-name">${loadout.primary}</h3>
+                <div class="weapon-type">${getWeaponType(loadout.primary)}</div>
+                <div class="attachments-list" id="primaryAttachments">
+                    ${loadout.primaryAttachments.length > 0 
+                        ? loadout.primaryAttachments.map(att => `<span class="attachment-item">${att}</span>`).join('')
+                        : '<p class="no-attachments">Keine Aufsätze</p>'}
+                </div>
+            `;
+        } else {
+            primaryContent.innerHTML = `
+                <h3 class="weapon-name">-</h3>
+                <div class="weapon-type">-</div>
+                <div class="attachments-list">
+                    <p class="no-attachments">Keine Primärwaffe</p>
+                </div>
+            `;
+        }
+ 
+        // Update Secondary Weapon
+        const secondaryContent = document.getElementById('secondaryContent');
+        if (loadout.secondary) {
+            let weaponType = "Sekundärwaffe";
+            if (loadoutData.secondaryWeapons.pistol.some(w => w.name === loadout.secondary)) weaponType = "Pistole";
+            else if (loadoutData.secondaryWeapons.launcher.some(w => w.name === loadout.secondary)) weaponType = "Werfer";
+            else if (loadoutData.secondaryWeapons.melee.some(w => w.name === loadout.secondary)) weaponType = "Nahkampf";
+            else if (loadout.wildcards.includes("Overkill")) weaponType = getWeaponType(loadout.secondary);
+ 
+            secondaryContent.innerHTML = `
+                <h3 class="weapon-name">${loadout.secondary}</h3>
+                <div class="weapon-type">${weaponType}</div>
+                <div class="attachments-list" id="secondaryAttachments">
+                    ${loadout.secondaryAttachments.length > 0 
+                        ? loadout.secondaryAttachments.map(att => `<span class="attachment-item">${att}</span>`).join('')
+                        : '<p class="no-attachments">Keine Aufsätze</p>'}
+                </div>
+            `;
+        } else {
+            secondaryContent.innerHTML = `
+                <h3 class="weapon-name">-</h3>
+                <div class="weapon-type">-</div>
+                <div class="attachments-list">
+                    <p class="no-attachments">Keine Sekundärwaffe</p>
+                </div>
+            `;
+        }
+ 
+        // Update Perks
+        ['perk1', 'perk2', 'perk3'].forEach((perkSlot, index) => {
+            const perkContent = document.getElementById(`${perkSlot}Content`);
+            const perks = loadout[perkSlot];
+ 
+            if (perks.length > 0) {
+                perkContent.innerHTML = perks.map(perk => 
+                    `<div class="perk-slot">${perk}</div>`
+                ).join('');
+            } else {
+                perkContent.innerHTML = '<div class="perk-slot">-</div>';
+            }
+        });
+ 
+        // Update Equipment
+        document.getElementById('lethalContent').textContent = loadout.lethal || '-';
+        document.getElementById('tacticalContent').textContent = loadout.tactical || '-';
+ 
+        // Update Wildcards
+        const wildcardsContent = document.getElementById('wildcardsContent');
+        if (loadout.wildcards.length > 0) {
+            wildcardsContent.innerHTML = `
+                <div class="wildcards-list">
+                    ${loadout.wildcards.map(wc => `<span class="wildcard-item">${wc}</span>`).join('')}
+                </div>
+            `;
+        } else {
+            wildcardsContent.innerHTML = '<p class="no-wildcards">Keine Wildcards</p>';
+        }
+ 
+        // Update Points
+        animatePointsCounter(loadout.points);
+ 
+        // Fade in all cards
+        cards.forEach((card, index) => {
+            card.classList.remove('fade-out');
+            card.classList.add('fade-in');
+            card.style.animationDelay = `${index * 50}ms`;
+        });
+    }, 200);
+}
+ 
+function animatePointsCounter(targetPoints) {
+    const pointsElement = document.getElementById('pointsUsed');
+    const startPoints = parseInt(pointsElement.textContent) || 0;
+    const duration = 500;
+    const steps = 20;
+    const increment = (targetPoints - startPoints) / steps;
+    let currentStep = 0;
+ 
+    const interval = setInterval(() => {
+        currentStep++;
+        const currentPoints = Math.round(startPoints + (increment * currentStep));
+        pointsElement.textContent = currentPoints;
+ 
+        // Add pulse effect
+        pointsElement.style.transform = 'scale(1.1)';
+        setTimeout(() => {
+            pointsElement.style.transform = 'scale(1)';
+        }, 50);
+ 
+        if (currentStep >= steps) {
+            clearInterval(interval);
+            pointsElement.textContent = targetPoints;
+        }
+    }, duration / steps);
+}
+ 
+// Event Listeners
+document.getElementById('generateButton').addEventListener('click', () => {
+    const button = document.getElementById('generateButton');
+    button.disabled = true;
+ 
+    // Generate new loadout
+    currentLoadout = generateRandomLoadout();
+ 
+    // Update UI
+    updateUI(currentLoadout);
+ 
+    // Re-enable button after animation
+    setTimeout(() => {
+        button.disabled = false;
+    }, 500);
+});
+ 
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', () => {
+    // Generate initial loadout
+    currentLoadout = generateRandomLoadout();
+    updateUI(currentLoadout);
+});</script></body>
+</html>
