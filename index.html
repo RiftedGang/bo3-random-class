@@ -1,92 +1,212 @@
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8">
   <title>Rifted - BO3 Random Class Generator</title>
-  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      background-color: #1a1a1a;
+      color: #fff;
+      font-family: "Segoe UI", Helvetica, sans-serif;
+      padding: 20px;
+    }
+
+    .title-block {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .title-block h1 {
+      font-size: 3rem;
+      color: #ffffff;
+      margin: 0;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+
+    .title-block h2 {
+      font-size: 1rem;
+      color: #ffa500;
+      font-weight: 400;
+      text-transform: uppercase;
+      margin-top: 8px;
+      letter-spacing: 1px;
+    }
+
+    .section {
+      margin-bottom: 30px;
+    }
+
+    .section-title {
+      font-size: 1.2rem;
+      color: #ffcc00;
+      margin-bottom: 10px;
+      border-bottom: 1px solid #444;
+      padding-bottom: 5px;
+    }
+
+    .grid-vertical {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 15px;
+    }
+
+    .slot {
+      background-color: #2a2a2a;
+      border: 2px dashed #555;
+      border-radius: 8px;
+      height: 110px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 8px;
+      position: relative;
+    }
+
+    .slot-label {
+      font-size: 0.8rem;
+      color: #aaa;
+      margin-top: 6px;
+    }
+
+    .slot-desc {
+      font-size: 0.7rem;
+      color: #66f;
+      margin-top: 4px;
+      font-style: italic;
+      text-align: center;
+      line-height: 1.2;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 1.2rem;
+      color: #ffa500;
+    }
+
+    .random-button {
+      display: block;
+      margin: 20px auto 0;
+      padding: 10px 20px;
+      font-size: 1rem;
+      background-color: #444;
+      color: #fff;
+      border: 1px solid #666;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .random-button:hover {
+      background-color: #666;
+    }
+
+    .specialist {
+      font-weight: bold;
+      font-size: 1.1rem;
+      text-align: center;
+      margin-bottom: 6px;
+    }
+  </style>
 </head>
 <body>
+
   <div class="title-block">
     <h1>Rifted</h1>
     <h2>Black OPS 3 Random Class Gen.</h2>
   </div>
 
-  <div class="section">
-    <div class="section-title">Primärwaffe</div>
-    <div class="grid">
-      <div class="slot"><div>+</div><div class="slot-label">Waffe</div><div class="slot-desc"></div></div>
-      <div class="slot"><div>+</div><div class="slot-label">Visier</div><div class="slot-desc"></div></div>
-      <div class="slot"><div>+</div><div class="slot-label">Aufsatz 1</div><div class="slot-desc"></div></div>
-      <div class="slot"><div>+</div><div class="slot-label">Aufsatz 2</div><div class="slot-desc"></div></div>
-      <div class="slot"><div>+</div><div class="slot-label">Aufsatz 3</div><div class="slot-desc"></div></div>
-      <div class="slot"><div>+</div><div class="slot-label">Aufsatz 4</div><div class="slot-desc"></div></div>
-    </div>
+  <div class="sections" id="class-sections">
+    <!-- Sections remain the same, we dynamically fill them -->
   </div>
 
-  <div class="section">
-    <div class="section-title">Sekundärwaffe</div>
-    <div class="grid">
-      <div class="slot"><div>+</div><div class="slot-label">Waffe</div><div class="slot-desc"></div></div>
-      <div class="slot"><div>+</div><div class="slot-label">Visier</div><div class="slot-desc"></div></div>
-      <div class="slot"><div>+</div><div class="slot-label">Aufsatz 1</div><div class="slot-desc"></div></div>
-      <div class="slot"><div>+</div><div class="slot-label">Aufsatz 2</div><div class="slot-desc"></div></div>
-    </div>
-  </div>
+  <div class="footer" id="point-counter">Auswahlpunkte: 0 / 10</div>
+  <button class="random-button" onclick="generateClass()">🎲 Zufällige Klasse generieren</button>
 
-  <div class="section">
-    <div class="section-title">Perks</div>
-    <div class="grid">
-      <div class="grid-vertical">
-        <div class="slot"><div>+</div><div class="slot-label">Perk 1</div><div class="slot-desc"></div></div>
-        <div class="slot"><div>+</div><div class="slot-label">Perk 1 (Zweit)</div><div class="slot-desc"></div></div>
-      </div>
-      <div class="grid-vertical">
-        <div class="slot"><div>+</div><div class="slot-label">Perk 2</div><div class="slot-desc"></div></div>
-        <div class="slot"><div>+</div><div class="slot-label">Perk 2 (Zweit)</div><div class="slot-desc"></div></div>
-      </div>
-      <div class="grid-vertical">
-        <div class="slot"><div>+</div><div class="slot-label">Perk 3</div><div class="slot-desc"></div></div>
-        <div class="slot"><div>+</div><div class="slot-label">Perk 3 (Zweit)</div><div class="slot-desc"></div></div>
-      </div>
-    </div>
-  </div>
+<script>
+const weapons = ["KN-44", "ICR-1", "HVK-30", "M8A7", "Man-O-War"];
+const sights = ["Reflex", "ELO", "BOA 3", "None"];
+const attachments = ["Schnellziehen", "Schaft", "Schnellfeuer", "Magazin", "FMJ"];
+const perks = ["Flinkheit", "Ghost", "Hardwired", "Totenstille", "Techniker"];
+const equipment = ["Splittergranate", "EMP", "Trophy", "Schockladung", "Thermit"];
+const wildcards = ["Primärwaffe 1", "Primärwaffe 2", "Perk 1 Greed", "Perk 2 Greed", "Perk 3 Greed"];
+const specialists = ["Prophet – Glitch", "Outrider – Vision Pulse", "Battery – War Machine"];
 
-  <div class="section">
-    <div class="section-title">Ausrüstung</div>
-    <div class="grid">
-      <div class="grid-vertical">
-        <div class="slot"><div>+</div><div class="slot-label">Tödlich 1</div><div class="slot-desc"></div></div>
-        <div class="slot"><div>+</div><div class="slot-label">Tödlich 2</div><div class="slot-desc"></div></div>
-      </div>
-      <div class="grid-vertical">
-        <div class="slot"><div>+</div><div class="slot-label">Taktisch 1</div><div class="slot-desc"></div></div>
-        <div class="slot"><div>+</div><div class="slot-label">Taktisch 2</div><div class="slot-desc"></div></div>
-      </div>
-    </div>
-  </div>
+function randomItem(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
 
-  <div class="section">
-    <div class="section-title">Wildcards</div>
-    <div class="grid">
-      <div class="slot"><div>+</div><div class="slot-label">Wildcard 1</div><div class="slot-desc"></div></div>
-      <div class="slot"><div>+</div><div class="slot-label">Wildcard 2</div><div class="slot-desc"></div></div>
-      <div class="slot"><div>+</div><div class="slot-label">Wildcard 3</div><div class="slot-desc"></div></div>
-    </div>
-  </div>
+function generateClass() {
+  const allSlots = document.querySelectorAll('.slot-desc');
+  let points = 0;
 
-  <div class="section">
-    <div class="section-title">Fähigkeit (Specialist)</div>
-    <div class="grid">
-      <div class="slot">
-        <div class="specialist">[ Specialist wählen ]</div>
-        <div class="slot-desc"></div>
-      </div>
-    </div>
-  </div>
+  allSlots.forEach(slot => slot.textContent = "");
 
-  <div class="footer">Auswahlpunkte: 0 / 10</div>
-  <button class="random-button">🎲 Zufällige Klasse generieren</button>
+  // Primärwaffe (2 points) + ggf. Wildcard for extra attachment
+  allSlots[0].textContent = randomItem(weapons); points += 2;
+  allSlots[1].textContent = randomItem(sights); points += 1;
+  let extraAttachments = 0;
 
-  <script src="script.js"></script>
+  const wildcardList = [];
+  for (let i = 0; i < 3; i++) {
+    const wc = randomItem(wildcards);
+    if (!wildcardList.includes(wc)) wildcardList.push(wc);
+  }
+
+  if (wildcardList.includes("Primärwaffe 1")) {
+    extraAttachments += 1;
+    if (wildcardList.includes("Primärwaffe 2")) extraAttachments += 1;
+  }
+
+  for (let i = 2; i < 6; i++) {
+    if (i - 2 < 1 + extraAttachments) {
+      allSlots[i].textContent = randomItem(attachments);
+      points += 1;
+    }
+  }
+
+  // Sekundärwaffe
+  for (let i = 6; i < 10; i++) {
+    allSlots[i].textContent = Math.random() > 0.5 ? randomItem(attachments) : "";
+  }
+
+  // Perks
+  let perkIndex = 10;
+  for (let p = 1; p <= 3; p++) {
+    allSlots[perkIndex++].textContent = randomItem(perks); points++;
+    if (wildcardList.includes("Perk " + p + " Greed")) {
+      allSlots[perkIndex++].textContent = randomItem(perks); points++;
+    } else {
+      allSlots[perkIndex++].textContent = "";
+    }
+  }
+
+  // Ausrüstung
+  for (let i = 16; i < 20; i++) {
+    allSlots[i].textContent = Math.random() > 0.5 ? randomItem(equipment) : "";
+    if (allSlots[i].textContent) points++;
+  }
+
+  // Wildcards
+  for (let i = 20; i < 23; i++) {
+    allSlots[i].textContent = wildcardList[i - 20];
+    points++;
+  }
+
+  // Specialist
+  allSlots[23].textContent = randomItem(specialists);
+
+  document.getElementById("point-counter").textContent = "Auswahlpunkte: " + points + " / 10";
+}
+</script>
+
 </body>
 </html>
