@@ -1,0 +1,179 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Rifted - BO3 Random Class Generator</title>
+  <style>
+    body {
+      background-color: #1a1a1a;
+      color: #fff;
+      font-family: "Segoe UI", Helvetica, sans-serif;
+      padding: 20px;
+    }
+    .title-block {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .title-block h1 {
+      font-size: 3rem;
+      color: #ffffff;
+      margin: 0;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+    .title-block h2 {
+      font-size: 1rem;
+      color: #ffa500;
+      font-weight: 400;
+      text-transform: uppercase;
+      margin-top: 8px;
+      letter-spacing: 1px;
+    }
+    .section { margin-bottom: 30px; }
+    .section-title {
+      font-size: 1.2rem;
+      color: #ffcc00;
+      margin-bottom: 10px;
+      border-bottom: 1px solid #444;
+      padding-bottom: 5px;
+    }
+    .grid-vertical {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 15px;
+    }
+    .slot {
+      background-color: #2a2a2a;
+      border: 2px dashed #555;
+      border-radius: 8px;
+      height: 110px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 8px;
+    }
+    .slot-label {
+      font-size: 0.8rem;
+      color: #aaa;
+      margin-top: 6px;
+    }
+    .slot-desc {
+      font-size: 0.7rem;
+      color: #666;
+      margin-top: 4px;
+      font-style: italic;
+      text-align: center;
+      line-height: 1.2;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 1.2rem;
+      color: #ffa500;
+    }
+    .random-button {
+      display: block;
+      margin: 20px auto 0;
+      padding: 10px 20px;
+      font-size: 1rem;
+      background-color: #444;
+      color: #fff;
+      border: 1px solid #666;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .random-button:hover {
+      background-color: #666;
+    }
+    .specialist {
+      font-weight: bold;
+      font-size: 1.1rem;
+      text-align: center;
+      margin-bottom: 6px;
+    }
+  </style>
+</head>
+<body>
+  <div class="title-block">
+    <h1>Rifted</h1>
+    <h2>BLACK OPS 3 RANDOM CLASS GEN.</h2>
+    <p id="punkte">Auswahlpunkte: 0 / 10</p>
+    <button class="random-button" onclick="generateClass()">🎲 Zufällige Klasse generieren</button>
+  </div>
+
+  <div id="class-output" style="text-align:center; margin-top: 30px;"></div>
+
+  <script>
+    const primWaffen = ["KN-44", "ICR-1", "Man-O-War", "HVK-30"];
+    const sekWaffen = ["RK5", "L-CAR 9", "MR6"];
+    const perks = ["Flinkheit", "Plünderer", "Totenstille", "Schnellhände", "Ghost"];
+    const aufsätze = ["Schaft", "Schnellziehen", "Magazinerweiterung", "Griff"];
+    const visiere = ["Reflex", "Elo", "BOA 3"];
+    const wildcards = ["Primärschütze 1", "Sekundärschütze 2", "Perk 1 Greed"];
+    const tödlich = ["Splittergranate", "Semtex"];
+    const taktisch = ["EMP", "Blendgranate"];
+    const specialist = ["Outrider – Vision Pulse", "Prophet – Glitch", "Battery – War Machine"];
+
+    function getRandom(arr) {
+      return arr[Math.floor(Math.random() * arr.length)];
+    }
+
+    function generateClass() {
+      const output = document.getElementById("class-output");
+      let punkte = 0;
+      let html = "";
+
+      // Primärwaffe
+      let prim = getRandom(primWaffen);
+      html += "<div><strong>Primärwaffe:</strong> " + prim + "</div>";
+      punkte++;
+
+      // Aufsätze (bis zu 3)
+      let aufs = [];
+      for (let i = 0; i < 2 + Math.floor(Math.random() * 2); i++) {
+        aufs.push(getRandom(aufsätze));
+        punkte++;
+      }
+      html += "<div>Aufsätze: " + [...new Set(aufs)].join(", ") + "</div>";
+
+      // Visier
+      let vis = getRandom(visiere);
+      html += "<div>Visier: " + vis + "</div>";
+      punkte++;
+
+      // Sekundärwaffe
+      let sek = getRandom(sekWaffen);
+      html += "<br><div><strong>Sekundärwaffe:</strong> " + sek + "</div>";
+      punkte++;
+
+      // Perks (max 3)
+      let perkSet = [...new Set([getRandom(perks), getRandom(perks), getRandom(perks)])];
+      html += "<div>Perks: " + perkSet.join(", ") + "</div>";
+      punkte += perkSet.length;
+
+      // Granaten
+      html += "<div>Granate: " + getRandom(tödlich) + ", " + getRandom(taktisch) + "</div>";
+      punkte += 2;
+
+      // Wildcard
+      let wc = getRandom(wildcards);
+      html += "<div>Wildcard: " + wc + "</div>";
+      punkte++;
+
+      // Specialist
+      html += "<br><div><strong>Specialist:</strong> " + getRandom(specialist) + "</div>";
+
+      // Anzeige
+      document.getElementById("punkte").innerText = "Auswahlpunkte: " + punkte + " / 10";
+      output.innerHTML = html;
+    }
+  </script>
+</body>
+</html>
